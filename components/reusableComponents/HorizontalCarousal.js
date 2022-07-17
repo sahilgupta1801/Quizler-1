@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { Text, View, StyleSheet, ScrollView, Dimensions , Image} from 'react-native';
 import TopicCard from './TopicCard';
+import GenreCard from './GenreCard'
 
 const { width } = Dimensions.get('window');
 
@@ -15,7 +16,7 @@ export default class HorizontalCarousal extends Component {
                 ref={(scrollView) => { this.scrollView = scrollView; }}
                 style={styles.container}
                 //pagingEnabled={true}
-                horizontal= {true}
+                horizontal= {true} 
                 decelerationRate={0}
                 snapToInterval={width - 60}
                 snapToAlignment={"center"}
@@ -26,11 +27,19 @@ export default class HorizontalCarousal extends Component {
                     right: 30,
                 }}>
                 {
-                this.props.cards.map((item,index) => {
-                    return (
-                        <TopicCard image = {this.props.image} key = {index} color = {item.color} text = {item.text} />
-                    )
-                })
+                this.props.type ? 
+
+                    this.props.cards.map((item,index) => {
+                        return (
+                            <TopicCard type = {this.props.type} image = {this.props.image} key = {index} color = {item.color} text = {item.text} />
+                        )
+                    })
+                : 
+                    this.props.cards.map((item,index) => {
+                        return (
+                            < GenreCard type = {this.props.type} image = {this.props.image} key = {index} color = {item.color} text = {item.text} />
+                        )
+                    })
                 }
             </ScrollView>
         )

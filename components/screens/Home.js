@@ -1,13 +1,44 @@
 import React, {Component} from 'react';
-import { Text, View, StyleSheet, ScrollView,ImageBackground, Dimensions , Image, StatusBar} from 'react-native';
+import { Text, View, StyleSheet, ScrollView,ImageBackground, Dimensions , Image, TextInput, StatusBar} from 'react-native';
 import HorizontalCarousal from '../reusableComponents/HorizontalCarousal';
-import DoubleCard from '../reusableComponents/DoubleCard'
+
 import { TouchableOpacity } from 'react-native';
 import WideTopic from '../reusableComponents/WideTopic';
+import MenuDrawer from 'react-native-side-drawer'
+import Register from './Register';
+import TopSheet from '../reusableComponents/TopSheet';
+import VerticalTopicDisplay from './VerticalTopicDisplay';
+//import VerticalGenreDisplay from './VerticalGenreDisplay';
 
 const { width } = Dimensions.get('window');
 
 export default class Home extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+    this.pressViewAll = this.pressViewAll.bind(this)
+    this.toggleOpen = this.toggleOpen.bind(this)
+  }
+
+pressViewAll(text) {
+  this.props.navigation.navigate('VerticalTopicDisplay', {heading : text})
+}
+
+pressViewAllGenres() {
+  this.props.navigation.navigate('VerticalGenreDisplay')
+}
+
+toggleOpen() {
+  this.props.navigation.openDrawer();
+}
+
+  // openTopSheet = () => {
+  //   console.log('Wallet Hello')
+  //   return <TopSheet />
+  // }
 
     render() {
         var trendingCards = [{color : 'pink', text : 'F1'},{color : '#Add8E6', text : 'Chelsea'},
@@ -19,26 +50,26 @@ export default class Home extends Component {
         {color : '#Add8e6', text : 'IPL'}];
 
         var genres = [
-            {color1 : '#Add8e6', text1 : 'TV Shows', color2 : 'yellow', text2 : 'Football'},
-            {color1 : 'pink', text1 : 'Movies', color2 : '#Add8e6', text2 : 'Cricket'},
-            {color1 : 'yellow', text1 : 'F1' , color2 : 'pink', text2 : 'History'}];
+            {color : '#Add8e6', text : 'TV Shows'}, {color : 'yellow', text : 'Football'},
+            {color : 'pink', text : 'Movies'}, {color : '#Add8e6', text : 'Cricket'},
+            {color : 'yellow', text : 'F1'}, {color : 'pink', text : 'History'}];
 
         var allTopics = [
-            {color1 : '#Add8e6', text1 : 'Chelsea', color2 : 'yellow', text2 : 'Game of Thrones'},
-            {color1 : 'pink', text1 : 'F.R.I.E.N.D.S', color2 : '#Add8e6', text2 : 'IPL 2022'},
-            {color1 : 'yellow', text1 : 'L.A Lakers' , color2 : 'pink', text2 : 'F1'},
-            {color1 : '#Add8e6', text1 : 'Manchester United', color2 : 'yellow', text2 : 'Liverpool'},
-            {color1 : 'pink', text1 : 'Harry Potter', color2 : '#Add8e6', text2 : 'Premier League'},
-            {color1 : 'pink', text1 : 'Bollywood' , color2 : 'yellow', text2 : 'Champions League'}];
+            {color : '#Add8e6', text : 'Chelsea'}, {color : 'yellow', text : 'Game of Thrones'},
+            {color : 'pink', text : 'F.R.I.E.N.D.S'}, {color : '#Add8e6', text : 'IPL 2022'},
+            {color : 'yellow', text : 'L.A Lakers'} , {color : 'pink', text : 'F1'},
+            {color : '#Add8e6', text : 'Manchester United'}, {color : 'yellow', text : 'Liverpool'},
+            {color : 'pink', text : 'Harry Potter'}, {color : '#Add8e6', text : 'Premier League'},
+            {color : 'pink', text : 'Bollywood'}, {color : 'yellow', text : 'Champions League'}];
 
         var viewAll = 'View All > ';
 
       return (
         <View>
             <StatusBar hidden = {true} />
-            <View style = {styles.topBar}>
-                {/* <Image style = {styles.topBarBackGround} source = {require('../../assets/Quizler.png')} resizeMode='stretch'/>  */}
-                <TouchableOpacity style = {styles.profileIcon}>
+
+            <View style = {styles.topBar} >
+                <TouchableOpacity style = {styles.profileIcon} onPress={this.toggleOpen}>
                     <Image style = {styles.avatar} source = {require('../../assets/avatar1.png')}/>
                     <Image style = {styles.hamburger} source = {require('../../assets/hamburger.png')} />
                 </TouchableOpacity>
@@ -48,40 +79,52 @@ export default class Home extends Component {
                         <Image style = {styles.notif} source = {require('../../assets/notif-icon.png')}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image style = {styles.wallet} source = {require('../../assets/wallet.png')}></Image>
+                        <Image style = {styles.wallet} source = {require('../../assets/wallet.png')} ></Image>
                     </TouchableOpacity>
                 </View>
             </View>
+
             <ScrollView> 
-            <View style = {styles.TitleLine}>
-            <Text style = {styles.trendingnow}> Trending Now !</Text> 
-            <Text style = {styles.viewall}> {viewAll} </Text>
-            </View>
-            <HorizontalCarousal image = 'F1' cards = {trendingCards}/>
+              <View style = {styles.trendingLine}>
+                <Text style = {styles.trendingnow}> Trending Now !</Text> 
+                <TouchableOpacity onPress={() => this.pressViewAll('Trending Topics')}>
+                  <Text style = {styles.viewall}> {viewAll} </Text>
+                </TouchableOpacity>
+              </View>
+              <HorizontalCarousal type = {1} image = 'F1' cards = {trendingCards}/>
 
-            <View style = {styles.TitleLine}>
-            <Text style = {styles.youmightlike}> You Might Like!</Text>
-            <Text style = {styles.viewall}> {viewAll} </Text>
-            </View>
-            <HorizontalCarousal image = 'Chelsea' cards = {youmightLikeCards} />
-
-            <Text style = {styles.genres}> Genres </Text>
-            {
-                genres.map((item,index) => {
-                    return (
-                        <DoubleCard key = {index} text1 = {item.text1} color1 = {item.color1} text2 = {item.text2} color2 = {item.color2} />
-                    )
-                })
-            }
-
-            <Text style = {styles.genres}> All Topics ! </Text>
-            {
-                allTopics.map((item, index) => {
-                    return (
-                        <WideTopic key={index} text1 = {item.text1} color1 = {item.color1} text2 = {item.text2} color2 = {item.color2}/>
-                    )
-                })
-            }
+              <View style = {styles.mightLikeLine}> 
+                <Text style = {styles.youmightlike}> You Might Like!</Text>
+                <TouchableOpacity onPress={() => this.pressViewAll('You Might Like!')}>
+                  <Text style = {styles.viewall}> {viewAll} </Text>
+                </TouchableOpacity>
+              </View>
+              <HorizontalCarousal type = {1} image = 'Chelsea' cards = {youmightLikeCards} />
+            
+              <View style = {styles.GenreLine}>
+                <Text style = {styles.genres}> Genres </Text>
+                <TouchableOpacity onPress={() => this.pressViewAllGenres('Genres!')}>
+                  <Text style = {styles.viewall}> {viewAll} </Text>
+                </TouchableOpacity>
+              </View>
+              <HorizontalCarousal type = {0} image = 'Chelsea' cards = {genres} />
+              
+              <View style = {styles.allTopicsLine}>
+                <Text style = {styles.allTopics}> All Topics ! </Text>
+                <TextInput
+                  style = {styles.topicsTextInput}
+                  placeholder='Search Topic..'
+                  >
+                </TextInput>
+              </View>
+              
+              {
+                  allTopics.map((item, index) => {
+                      return (
+                          <WideTopic key={index} height ={50} text = {item.text} color = {item.color}/>
+                      )
+                  })
+              }
             </ScrollView>
         </View>
     );
@@ -89,7 +132,35 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  animatedBox : {
+    width : width*0.6,
+    borderRightColor : '#000000',
+    borderRightWidth : 2,
+    height : '100%',
+    backgroundColor : '#FFFFFF'
+  },
+  container: {
+    overlayColor : 0.2,
+  },
+  sideDrawer : {
+    justifyContent : 'center',
+    width : '75%',
+    height : '100%',
+    borderRightWidth : 1,
+    borderRightColor : '#000000',
+    backgroundColor : '#DEDEDE',
+  },
+  closeWrapper : {
+      justifyContent : 'center',
+      height : 40,
+      width : '100%',
+      borderColor : '#FFFFFD',
+      borderWidth : 2
+  },
+  close : {
+    fontWeight : 'bold',
+    alignSelf : 'center'
+  },
   profileIcon : {
     flexDirection : 'row',
     paddingLeft : width* 0.05,
@@ -107,7 +178,8 @@ const styles = StyleSheet.create({
   },
   topBarBackGround : {
     height : 110,
-    width : '100%'
+    width : '100%',
+    
   },
   icons : { 
       flexDirection : 'row',
@@ -120,7 +192,7 @@ const styles = StyleSheet.create({
       borderBottomWidth : 1,
       height : 110,
       alignItems : 'center',
-      backgroundColor : '#A865C9'
+      backgroundColor : '#A865C9',
     },
   notif : {
       height : 30,
@@ -146,7 +218,17 @@ const styles = StyleSheet.create({
     paddingTop : 15,
     paddingLeft : 10
   },
-  TitleLine : {
+  trendingLine : {
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    marginTop : 0
+  },
+  mightLikeLine : {
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    marginTop : 0
+  },
+  GenreLine : {
     flexDirection : 'row',
     justifyContent : 'space-between'
   },
@@ -162,10 +244,31 @@ const styles = StyleSheet.create({
     paddingLeft : 10
   },
   genres : {
-      paddingTop : 15,
+      marginTop : 15,
       fontSize : 18,
       fontWeight : 'bold',
-      paddingLeft : 10,
+      marginLeft : 10,
       marginBottom : 10
+  },
+  allTopics : {
+    fontSize : 18,
+    fontWeight : 'bold',
+    marginLeft : 10,
+    marginBottom : 10,
+    marginTop : 5
+  },
+  allTopicsLine : {
+    marginTop : 20,
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    alignItems : 'center'
+  },
+  topicsTextInput : {
+    marginRight : 25,
+    borderWidth : 0.5,
+    borderRadius : 10,
+    height : 30,
+    width : '50%',
+    textAlign : 'center'
   }
 });

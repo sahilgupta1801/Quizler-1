@@ -8,6 +8,10 @@ export default class Matchmaking extends Component {
     componentDidMount() {
         setTimeout(() => {this.scrollView.scrollTo({x: -30}) }, 1) // scroll view position fix
     }
+
+    handleBackLobby = () => {
+        this.props.navigation.goBack();
+    }
     render() {
         
     var backText = '< Back To Lobby'
@@ -20,8 +24,8 @@ export default class Matchmaking extends Component {
                   {id : '../../assets/avatar7.png'},
                   {id : '../../assets/avatar8.png'}]
     return (
-        <View>
-            <TouchableOpacity style = {styles.backToLobby}>
+        <View style = {styles.page}>
+            <TouchableOpacity style = {styles.backToLobby} onPress={()=> this.handleBackLobby()}>
                 <Text style = {styles.backToLobbyText}>
                       {backText}
                 </Text>
@@ -71,6 +75,10 @@ export default class Matchmaking extends Component {
 }
 
 const styles = StyleSheet.create({
+    page : {
+        flex : 1,
+        backgroundColor : '#Ececec'
+    },
     container : {
         marginTop : 120,
         marginLeft : 20,

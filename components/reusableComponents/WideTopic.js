@@ -1,16 +1,22 @@
 import React from 'react';
-import {View, Dimensions, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import { Image, StyleSheet , Dimensions, View, Text, TouchableOpacity} from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get('window');
 
 function WideTopic(props) {
+
+    const handleTopicPress = () => {
+        console.log(props)
+        props.navigation.navigate('TopicScreen', {heading : props.text})
+    }
     return (
-        <View style = {styles.overallView}>
-            <TouchableOpacity style = {styles.view1} >
-                <Image style = {styles.topicImage} resizeMode='stretch' source = {require('../../assets/Potter.png')}/>
+        // <View style = {styles.overallView} onPress = {() => handleTopicPress}>
+            <TouchableOpacity marginTop = {props.margin} height = {props.height} style = {styles.view1} onPress={()=> handleTopicPress()} >
+                <Image height = {props.height} style = {styles.topicImage} resizeMode='stretch' source = {require('../../assets/Potter.png')}/>
                     {/* <Text style = {styles.text1}>{props.text1}</Text> */}
             </TouchableOpacity>
-        </View>
+        /* </View> */
     );
 }
  
@@ -23,17 +29,16 @@ const styles = StyleSheet.create({
       marginTop: 5,
       width: width*0.9,
       margin: 5,
-      height: 50,
+      
       borderRadius: 10,
       justifyContent : 'center',
       alignSelf : 'center'
     },
     view1: {
-        marginTop: 5,
+  
         width: width*0.9,
         marginLeft : 5,
         margin: 5,
-        height: 50,
         borderRadius: 10,
         justifyContent : 'center',
         alignSelf : 'center'
@@ -41,4 +46,4 @@ const styles = StyleSheet.create({
       }
 });
 
-export default WideTopic;
+export default withNavigation(WideTopic);

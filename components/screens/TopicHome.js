@@ -2,12 +2,14 @@ import React from 'react';
 
 import {View,Text, StyleSheet, Image} from 'react-native'; 
 
-import ContestCard from './ContestCard';
+import ContestCard from '../reusableComponents/ContestCard';
+import Header from '../reusableComponents/Header';
 
-function TopicHome(props) {
+function TopicHome({navigation}) {
 
     var back = '<';
 
+    const heading  = navigation.state.params.heading;
     var contests = [{
         entry : '0',
         winning : '0',
@@ -50,12 +52,7 @@ function TopicHome(props) {
 
     return (
         <View style={styles.container}>
-            <View style = {styles.topBar}>
-                <Text style = {styles.backButton}> {back}</Text>
-                {/* <Text style = {styles.backtext}> Back</Text> */}
-                <Text style = {styles.headLine}> {props.Topic} </Text>
-                <Image style = {styles.wallet} resizeMode='contain' source = {require('../../assets/wallet.png')}></Image>
-            </View>
+            <Header navigation={navigation} title = {heading} hamburger={0} wallet={1}/>
 
             <Text style = {styles.contests}> Contests </Text>
             {
@@ -84,11 +81,11 @@ const styles = StyleSheet.create({
         flexDirection : 'row',
         borderBottomColor : '#000',
         borderBottomWidth : 1,
-        height : 150,
+        height : 100,
         backgroundColor : '#A865C9',
         justifyContent : 'space-between',
-        alignContent : 'center',
-        paddingTop : 60
+        alignItems : 'center',
+        // paddingTop : 60
     },
     backButton : {
         fontSize : 40,
@@ -112,7 +109,7 @@ const styles = StyleSheet.create({
         marginTop : 15
     },
     contests : {
-        paddingTop : 10,
+        marginTop : 30,
         fontSize : 32,
         fontWeight : 'bold',
         alignSelf : 'center',

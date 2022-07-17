@@ -5,13 +5,13 @@ import { withNavigation } from 'react-navigation';
 
 const { width } = Dimensions.get('window');
 
-function TopicCard(props) {
+function GenreCard(props) {
 
-    const handleTopicPress = () => {
-        props.navigation.navigate('TopicScreen', {heading : props.text})
+    const handleGenrePress = () => {
+        props.navigation.navigate('VerticalGenreDisplay', {heading : props.text})
     }
     return (
-        <TouchableOpacity style = {styles.view} onPress={() => handleTopicPress()}>
+        <TouchableOpacity style = {styles.view} onPress={() => handleGenrePress()}>
             <Image style = {styles.topicImage} resizeMode='stretch' source = {require('../../assets/F1.png')}/> 
             {/* <Text style = {styles.text}>{props.text}</Text> */}
         </TouchableOpacity>
@@ -19,7 +19,7 @@ function TopicCard(props) {
 }
 const styles = StyleSheet.create({
     view: {
-        marginTop: 10,
+        //marginTop: 10,
         width: width*0.4,
         margin: 5,
         height: 100,
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
         alignSelf : 'center'
       }
 });
-export default withNavigation(TopicCard);
+export default withNavigation(GenreCard);

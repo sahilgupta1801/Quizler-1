@@ -1,10 +1,15 @@
 import React from 'react';
 
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {withNavigation} from 'react-navigation';
 
 function ContestCard(props) {
+
+    const handlePlayNow = () => {
+        props.navigation.navigate('Matchmaking')
+    }
     return (
-        <TouchableOpacity style={styles.contestCard}>
+        <View style={styles.contestCard}>
             <View style = {styles.contestLeft}>
             <Text style= {styles.contestName}>
                 {props.contestName}
@@ -25,11 +30,11 @@ function ContestCard(props) {
                     {props.currentOnline}
                 </Text>
             </View>
-            <TouchableOpacity style = {styles.playNowButton}>
-                <Text style = {styles.entryFee}> Entry : </Text>
+            <TouchableOpacity style = {styles.playNowButton} onPress={()=> handlePlayNow()}>
+                <Text style = {styles.entryFee}> Entry </Text>
                 <Text style = {styles.entryNumber}>Rs. {props.entry} </Text>
             </TouchableOpacity>
-        </TouchableOpacity>
+        </View>
     );
 }
 
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
         marginTop : 5,
         width : '25%',
         height : 65,
-        borderRadius : 10,
+        borderRadius : 5,
         backgroundColor : '#FFF',
         marginRight : 5
     },
@@ -105,4 +110,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ContestCard;
+export default withNavigation(ContestCard);
