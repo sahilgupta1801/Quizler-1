@@ -1,15 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import {View,Text, StyleSheet, Image} from 'react-native'; 
+import {View,Text, StyleSheet, Image, Modal, TouchableOpacity} from 'react-native'; 
 
 import ContestCard from '../reusableComponents/ContestCard';
 import Header from '../reusableComponents/Header';
 
+import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-fontawesome';
+
+
 function TopicHome({navigation}) {
 
-    var back = '<';
+    const [modalVisible, setModalVisible] = useState(false);
 
+    var back = '<';
     const heading  = navigation.state.params.heading;
+    
     var contests = [{
         entry : '0',
         winning : '0',
@@ -54,7 +59,36 @@ function TopicHome({navigation}) {
         <View style={styles.container}>
             <Header navigation={navigation} title = {heading} hamburger={0} wallet={1}/>
 
-            <Text style = {styles.contests}> Contests </Text>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                    }}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Hello World!</Text>
+                            <TouchableOpacity
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(false)}
+                            >
+                            <Text style={styles.textStyle}>Hide Modal</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    {/* How to play ka model likhna hai yaha  */}
+                </Modal>
+        
+            <View style = {styles.belowHeaderBox}>
+                <Text style = {styles.contests}> Contests </Text>
+                <TouchableOpacity style = {styles.howToPlayBlock} onPress = {() => setModalVisible(true)}>
+                    <Text style = {styles.howToPlay}> How to Play?  </Text>
+                    <Image style = {styles.infoIcon} source = {require('../../assets/info-icon.png')} />
+                </TouchableOpacity>
+            </View>
+            
             {
             contests.map((item, index) => {
                     return (
@@ -77,26 +111,44 @@ const styles = StyleSheet.create({
     container : {
         
     },
-    topBar : {
-        flexDirection : 'row',
-        borderBottomColor : '#000',
-        borderBottomWidth : 1,
-        height : 100,
-        backgroundColor : '#A865C9',
-        justifyContent : 'space-between',
-        alignItems : 'center',
-        // paddingTop : 60
-    },
-    backButton : {
-        fontSize : 40,
-        fontWeight : 'bold',
-        paddingLeft : 10
-    },
     // backtext : {
     //     marginTop : 20,
     //     fontSize : 14,
     //     paddingLeft : -20
     // },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+      },
+      buttonOpen: {
+        backgroundColor: "#F194FF",
+      },
+      buttonClose: {
+        backgroundColor: "#2196F3",
+      },
+      textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+      },
+      modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+      },
+    centeredView : {
+        height : '60%',
+        width : '80%',
+        borderWidth : 1,
+        alignSelf : 'center',
+        justifyContent : 'center',
+        backgroundColor : '#ECECEC',
+        marginTop : '30%',
+        borderRadius : 10
+    },
+    modalView : {
+        alignSelf : 'center'
+    },
     headLine : {
         fontWeight : 'bold',
         fontSize : 40,
@@ -109,11 +161,25 @@ const styles = StyleSheet.create({
         marginTop : 15
     },
     contests : {
-        marginTop : 30,
+        //marginTop : 30,
         fontSize : 32,
         fontWeight : 'bold',
         alignSelf : 'center',
         marginBottom : 20
+    },
+    belowHeaderBox : {
+        flexDirection : 'row',
+        justifyContent : 'space-around',
+        marginTop : 30
+    },
+    howToPlayBlock : {
+        flexDirection : 'row',
+        marginTop : 15
+    },
+    infoIcon : {
+        //marginLeft :5,
+        width : 20,
+        height : 20
     }
 })
 

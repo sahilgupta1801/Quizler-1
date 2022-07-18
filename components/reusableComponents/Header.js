@@ -1,9 +1,11 @@
-import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import React,{useState} from 'react';
+import {View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, Modal} from 'react-native';
 
 const { width } = Dimensions.get('window');
 
 function Header({navigation, title, hamburger, wallet}) {
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     const openMenu = () => {
         navigation.openDrawer();
@@ -11,6 +13,10 @@ function Header({navigation, title, hamburger, wallet}) {
 
     const prev = () => {
         navigation.goBack();
+    }
+
+    const openWalletModal = () => {
+
     }
     return (
         <View style = {styles.header}>
@@ -28,14 +34,34 @@ function Header({navigation, title, hamburger, wallet}) {
             <Text style = {styles.heading}> {title} </Text>
             {
                 wallet ?
-                <TouchableOpacity onPress={openMenu}> 
+                <TouchableOpacity onPress={() => setModalVisible(true)}> 
                     <Image  source = {require('../../assets/wallet.png')} style = {styles.wallet} />          
                 </TouchableOpacity>
                 : 
                 <View>
-
                 </View>
             }
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Hello World!</Text>
+                        <TouchableOpacity
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(false)}
+                        >
+                        <Text style={styles.textStyle}>Hide Modal</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                {/* Designing Left */}
+            </Modal>
         </View>  
     );
 }
@@ -81,6 +107,31 @@ const styles = StyleSheet.create({
         width : 30,
         marginRight : 40,
         marginTop : 10
-    }
+    },
+    centeredView : {
+        height : '30%',
+        width : '100%',
+        borderWidth : 1,
+        alignSelf : 'center',
+        justifyContent : 'center',
+        backgroundColor : '#ECECEC',
+        marginTop : 100,
+        borderBottomLeftRadius : 30,
+        borderBottomRightRadius : 30
+    },
+    modalView : {
+        alignSelf : 'center'
+    },
+    button: {
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2
+    },
+    buttonOpen: {
+      backgroundColor: "#F194FF",
+    },
+    buttonClose: {
+      backgroundColor: "#2196F3",
+    },
 })
 export default Header;

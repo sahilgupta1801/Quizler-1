@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import { Text, View, StyleSheet, ScrollView,ImageBackground, Dimensions , Image, TextInput, StatusBar} from 'react-native';
+import { Text, View, StyleSheet, ScrollView,ImageBackground, Dimensions , Image, TextInput, StatusBar, Modal} from 'react-native';
 import HorizontalCarousal from '../reusableComponents/HorizontalCarousal';
 
 import { TouchableOpacity } from 'react-native';
 import WideTopic from '../reusableComponents/WideTopic';
-import MenuDrawer from 'react-native-side-drawer'
-import Register from './Register';
-import TopSheet from '../reusableComponents/TopSheet';
 import VerticalTopicDisplay from './VerticalTopicDisplay';
 //import VerticalGenreDisplay from './VerticalGenreDisplay';
 
@@ -17,10 +14,13 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      notifModalopen: false,
+      walletModalopen : false
     };
     this.pressViewAll = this.pressViewAll.bind(this)
     this.toggleOpen = this.toggleOpen.bind(this)
+    this.toggleNotifModal = this.toggleNotifModal.bind(this)
+    this.toggleWalletModal = this.toggleWalletModal.bind(this)
   }
 
 pressViewAll(text) {
@@ -35,11 +35,19 @@ toggleOpen() {
   this.props.navigation.openDrawer();
 }
 
-  // openTopSheet = () => {
-  //   console.log('Wallet Hello')
-  //   return <TopSheet />
-  // }
+toggleWalletModal() {
+  this.setState({
+    notifModalopen : false,
+    walletModalopen : !this.state.walletModalopen
+  });
+}
 
+toggleNotifModal() {
+  this.setState({
+    notifModalopen : !this.state.notifModalopen,
+    walletModalopen : false,
+  });
+}
     render() {
         var trendingCards = [{color : 'pink', text : 'F1'},{color : '#Add8E6', text : 'Chelsea'},
         {color : 'pink', text : 'IPL'},{color : 'pink', text : 'F.R.I.E.N.D.S'},
@@ -75,14 +83,58 @@ toggleOpen() {
                 </TouchableOpacity>
                 <Text style= {styles.bannerText}> Quizler! </Text>
                 <View style ={styles.icons}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.toggleNotifModal}>
                         <Image style = {styles.notif} source = {require('../../assets/notif-icon.png')}></Image>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.toggleWalletModal}>
                         <Image style = {styles.wallet} source = {require('../../assets/wallet.png')} ></Image>
                     </TouchableOpacity>
                 </View>
             </View>
+
+                    <Modal
+                            animationType="slide"
+                            transparent={true}
+                            visible={this.state.walletModalopen}
+                            onRequestClose={ () => 
+                            this.toggleWalletModal()
+                            }
+                        >
+                        <View style={styles.centeredView}>
+                          <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Hello World!</Text>
+                            <TouchableOpacity
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => this.toggleWalletModal()}
+                            >
+                              <Text style={styles.textStyle}>Hide Modal</Text>
+                            </TouchableOpacity>
+                          </View>
+                          </View>
+                        {/* Designing Left  */}
+                    </Modal>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.notifModalopen}
+                        onRequestClose={() => {
+                          this.toggleNotifModal()
+                        }}
+                    >
+                            <View style={styles.centeredView}>
+                            <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Hello World!</Text>
+                            <TouchableOpacity
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => this.toggleNotifModal()}
+                            >
+                                <Text style={styles.textStyle}>Hide Modal</Text>
+                            </TouchableOpacity>
+                            </View>
+                            </View>
+                            {/* Designing Left */}
+                    </Modal>
+
 
             <ScrollView> 
               <View style = {styles.trendingLine}>
@@ -270,5 +322,30 @@ const styles = StyleSheet.create({
     height : 30,
     width : '50%',
     textAlign : 'center'
-  }
+  },
+  centeredView : {
+    height : '30%',
+    width : '100%',
+    borderWidth : 1,
+    alignSelf : 'center',
+    justifyContent : 'center',
+    backgroundColor : '#ECECEC',
+    marginTop : 110,
+    borderBottomLeftRadius : 30,
+    borderBottomRightRadius : 30
+},
+modalView : {
+    alignSelf : 'center'
+},
+button: {
+  borderRadius: 20,
+  padding: 10,
+  elevation: 2
+},
+buttonOpen: {
+  backgroundColor: "#F194FF",
+},
+buttonClose: {
+  backgroundColor: "#2196F3",
+},
 });

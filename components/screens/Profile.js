@@ -13,6 +13,8 @@ function Profile(props) {
         props.navigation.navigate('TransactionHistory')
     }
     var kyc = 0;
+    var forward = '>'
+
     return (
         <View style = {styles.container}>
             <StatusBar hidden = {true} />
@@ -42,17 +44,17 @@ function Profile(props) {
 
             <TouchableOpacity style = {styles.wideBox} onPress={() => goTransactionHistory()}>
                 <Text style = {styles.wideText}> Transaction History </Text>
-                {/* Add right side icon */}
+                <Text style = {styles.forwardArrow}> {forward} </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style = {styles.wideBox2} onPress={() => goGameHistory()} >
                 <Text style = {styles.wideText}> Game History </Text>
-                {/* Add right side icon */}
+                <Text style = {styles.forwardArrow}> {forward} </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style = {styles.wideBox2} >
                 <Text style = {styles.wideText}> Analytics </Text>
-                {/* Add right side icon */}
+                <Text style = {styles.forwardArrow}> {forward} </Text>
             </TouchableOpacity>
 
         </View>
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
         width : '70%',
         marginTop : 50,
         justifyContent : 'center',
-        borderRadius : 5,
+        borderRadius : 10,
         borderWidth : 1,
         borderColor : '#000000'
     },
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
         width : '70%',
         marginTop : 20,
         justifyContent : 'center',
-        borderRadius : 5,
+        borderRadius : 10,
         borderWidth : 1,
         borderColor : '#000000'
     },
@@ -121,26 +123,34 @@ const styles = StyleSheet.create({
         height : 60,
         width : '85%',
         marginTop : 50,
-        justifyContent : 'center',
-        borderRadius : 5,
+        justifyContent : 'space-between',
+        borderRadius : 10,
         borderWidth : 1,
-        borderColor : '#000000'
+        borderColor : '#000000',
+        flexDirection : 'row',
+        alignItems : 'center'
     },
     wideBox2 : {
         alignSelf : 'center',
         height : 60,
         width : '85%',
         marginTop : 20,
-        justifyContent : 'center',
-        borderRadius : 5,
+        justifyContent : 'space-between',
+        borderRadius : 10,
         borderWidth : 1,
-        borderColor : '#000000'
+        borderColor : '#000000',
+        alignItems : 'center',
+        flexDirection : 'row',
     },
     wideText : {
         marginLeft : 10,
         fontWeight : 'bold',
         fontSize : 16
-    }
+    },
+    forwardArrow : {
+        marginRight : 20,
+        fontSize : 30
+    },
 })
 
 export default Profile;

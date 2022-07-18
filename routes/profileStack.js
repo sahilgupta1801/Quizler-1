@@ -30,7 +30,7 @@ const screens = {
     //     }
     // },
     // KYCVerify : {
-    //     screen : KYCVerify,
+    //     screen : VerifyKYC,
     //     navigationOptions : {
     //         headerShown : false,
     //     }

@@ -45,7 +45,10 @@ function Wallet(props) {
                     <Text style = {styles.boxText}> Deposit Wallet </Text>
                     <Text style = {styles.boxAmount}> Rs. 150 </Text>
                 </View>
-            {/* add info image */}
+                <TouchableOpacity onPress = {() => openDepositsToolTip()} >
+                    <Image style = {styles.infoIcon} source = {require('../../assets/info-icon.png')} />
+                </TouchableOpacity>
+                 
             </View>
             
             <View style ={styles.boxView}>
@@ -63,7 +66,7 @@ function Wallet(props) {
                     <Text style = {styles.boxText}> Bonus Wallet </Text>
                     <Text style = {styles.boxAmount}> Rs. 5 </Text>
                 </View>
-                {/* add info icon */}
+                <Image style = {styles.infoIcon} source = {require('../../assets/info-icon.png')} />
             </View>
 
             <TouchableOpacity style = {styles.boxView} onPress={() => goToManagePayments()}>
@@ -154,7 +157,7 @@ const styles = StyleSheet.create({
     },
     withdrawButton : {
         marginRight : 20,
-        height : 60,
+        height : 50,
         borderColor : '#000000',
         borderWidth : 1,
         width : '30%',
@@ -191,6 +194,11 @@ const styles = StyleSheet.create({
         marginRight : 20,
         fontSize : 30
     },
+    infoIcon : {
+        height : 20,
+        width : 20,
+        marginRight : 25
+    }
 })
 
 export default Wallet;
