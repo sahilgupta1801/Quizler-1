@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import { Text, View, StyleSheet, ScrollView,ImageBackground, Dimensions , Image, TextInput, StatusBar, Modal} from 'react-native';
+import { Text, View, StyleSheet, ScrollView,ImageBackground, Dimensions , Image, TextInput, StatusBar, Modal, TouchableOpacity} from 'react-native';
 import HorizontalCarousal from '../reusableComponents/HorizontalCarousal';
 
-import { TouchableOpacity } from 'react-native';
+import {genres, trendingCards, youmightLikeCards , allTopics, offers, userData} from '../../data/allDataVariables'
+import { avatars } from '../../data/constants';
 import WideTopic from '../reusableComponents/WideTopic';
-import VerticalTopicDisplay from './VerticalTopicDisplay';
-//import VerticalGenreDisplay from './VerticalGenreDisplay';
 
 const { width } = Dimensions.get('window');
 
@@ -21,14 +20,16 @@ export default class Home extends Component {
     this.toggleOpen = this.toggleOpen.bind(this)
     this.toggleNotifModal = this.toggleNotifModal.bind(this)
     this.toggleWalletModal = this.toggleWalletModal.bind(this)
+    this.goToAddCash = this.goToAddCash.bind(this)
   }
 
 pressViewAll(text) {
-  this.props.navigation.navigate('VerticalTopicDisplay', {heading : text})
+  var type = (text == 'Trending Topics') ? 1 : 2
+  this.props.navigation.navigate('VerticalTopicDisplay', {heading : text , genres : 0, type : type})
 }
 
 pressViewAllGenres() {
-  this.props.navigation.navigate('VerticalGenreDisplay')
+  this.props.navigation.navigate('VerticalTopicDisplay', {heading : 'All Genres' , genres : 1, type : 3})
 }
 
 toggleOpen() {
@@ -48,29 +49,15 @@ toggleNotifModal() {
     walletModalopen : false,
   });
 }
+
+goToAddCash() {
+  //this.props.navigation.navigate('AddCash')
+}
     render() {
-        var trendingCards = [{color : 'pink', text : 'F1'},{color : '#Add8E6', text : 'Chelsea'},
-        {color : 'pink', text : 'IPL'},{color : 'pink', text : 'F.R.I.E.N.D.S'},
-        {color : '#Add8e6', text : 'Game of Thrones'}];
 
-        var youmightLikeCards = [{color : '#Add8e6', text : 'F.R.I.E.N.D.S'},{color : 'pink', text : 'Game of Thrones'},
-        {color : '#Add8e6', text : 'F1'},{color : 'pink', text : 'Chelsea'},
-        {color : '#Add8e6', text : 'IPL'}];
-
-        var genres = [
-            {color : '#Add8e6', text : 'TV Shows'}, {color : 'yellow', text : 'Football'},
-            {color : 'pink', text : 'Movies'}, {color : '#Add8e6', text : 'Cricket'},
-            {color : 'yellow', text : 'F1'}, {color : 'pink', text : 'History'}];
-
-        var allTopics = [
-            {color : '#Add8e6', text : 'Chelsea'}, {color : 'yellow', text : 'Game of Thrones'},
-            {color : 'pink', text : 'F.R.I.E.N.D.S'}, {color : '#Add8e6', text : 'IPL 2022'},
-            {color : 'yellow', text : 'L.A Lakers'} , {color : 'pink', text : 'F1'},
-            {color : '#Add8e6', text : 'Manchester United'}, {color : 'yellow', text : 'Liverpool'},
-            {color : 'pink', text : 'Harry Potter'}, {color : '#Add8e6', text : 'Premier League'},
-            {color : 'pink', text : 'Bollywood'}, {color : 'yellow', text : 'Champions League'}];
-
+        var avatarSel = userData.avatarSel;
         var viewAll = 'View All > ';
+        var notificationHeading = "Notifications & Offers";
 
       return (
         <View>
@@ -78,7 +65,7 @@ toggleNotifModal() {
 
             <View style = {styles.topBar} >
                 <TouchableOpacity style = {styles.profileIcon} onPress={this.toggleOpen}>
-                    <Image style = {styles.avatar} source = {require('../../assets/avatar1.png')}/>
+                    <Image style = {styles.avatar} source = {avatars[avatarSel]}/>
                     <Image style = {styles.hamburger} source = {require('../../assets/hamburger.png')} />
                 </TouchableOpacity>
                 <Text style= {styles.bannerText}> Quizler! </Text>
@@ -92,48 +79,103 @@ toggleNotifModal() {
                 </View>
             </View>
 
-                    <Modal
-                            animationType="slide"
-                            transparent={true}
-                            visible={this.state.walletModalopen}
-                            onRequestClose={ () => 
-                            this.toggleWalletModal()
-                            }
-                        >
-                        <View style={styles.centeredView}>
-                          <View style={styles.modalView}>
-                            <Text style={styles.modalText}>Hello World!</Text>
-                            <TouchableOpacity
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => this.toggleWalletModal()}
-                            >
-                              <Text style={styles.textStyle}>Hide Modal</Text>
-                            </TouchableOpacity>
-                          </View>
-                          </View>
-                        {/* Designing Left  */}
-                    </Modal>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={this.state.notifModalopen}
-                        onRequestClose={() => {
-                          this.toggleNotifModal()
-                        }}
-                    >
-                            <View style={styles.centeredView}>
-                            <View style={styles.modalView}>
-                            <Text style={styles.modalText}>Hello World!</Text>
-                            <TouchableOpacity
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => this.toggleNotifModal()}
-                            >
-                                <Text style={styles.textStyle}>Hide Modal</Text>
-                            </TouchableOpacity>
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={this.state.walletModalopen}
+              onRequestClose={ () => 
+              this.toggleWalletModal()
+              }
+            >
+              <View style = {styles.centeredView}>
+                <View style = {styles.totalBalanceBlock}>
+                    <View style = {styles.totalBalanceLeft}>
+                      <Text style = {styles.totalBalanceHead}> Total Balance : </Text>
+                      <Text style = {styles.totalBalanceAmount}> Rs {userData.depositBalance + userData.winningsBalance + userData.bonusBalance} </Text>
+                    </View>
+                                
+                    <TouchableOpacity style = {styles.addCashButton} onPress={this.goToAddCash}>
+                      <Text style = {styles.addCash}> Add Cash!</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View style = {styles.partBlock}>
+                  <View style = {styles.partLeft}>
+                    <Text style = {styles.partHead}> Deposits </Text>
+                    <Text style = {styles.partExp}> The amount added to wallet and is un-used </Text>
+                  </View>
+                  <Text style = {styles.partAmount}> Rs. {userData.depositBalance} </Text>
+                </View>
+
+                <View style = {styles.partBlock}>
+                  <View style = {styles.partLeft}>
+                    <Text style = {styles.partHead}> Winnings </Text>
+                    <Text style = {styles.partExp}> The amount won through contest </Text>
+                  </View>
+                  <Text style = {styles.partAmount}> Rs. {userData.winningsBalance} </Text>
+                </View>
+
+                <View style = {styles.partBlock}>
+                  <View style = {styles.partLeft}>
+                    <Text style = {styles.partHead}> Bonus </Text>
+                    <Text style = {styles.partExp}> Can be used as 10% of the entry fee. </Text>
+                  </View>
+                  <Text style = {styles.partAmount}> Rs. {userData.bonusBalance} </Text>
+                </View>
+
+                <TouchableOpacity style = {styles.closeButton} onPress={this.toggleWalletModal}>
+                  <Image style = {styles.closeIcon}  source = {require('../../assets/up-arrow.png')} />
+                  <Text style = {styles.closeText}> Close </Text>
+                </TouchableOpacity>
+              </View>
+            </Modal>
+
+
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={this.state.notifModalopen}
+              onRequestClose={() => {
+              this.toggleNotifModal()
+              }}
+            >
+              <View style={styles.centeredViewNotif}>
+                  <View style = {styles.notifHeadingBlock}>
+                    <Text style = {styles.notifHeading}> {notificationHeading} </Text>
+                    <Text style = {styles.notifViewall}> {viewAll} </Text>
+                  </View>
+
+                  <ScrollView 
+                    ref={(scrollView) => { this.scrollView = scrollView; }}
+                    style={styles.notifScroll}
+                    //pagingEnabled={true}
+                    horizontal= {true} 
+                    decelerationRate={0}
+                    snapToInterval={width - 60}
+                    snapToAlignment={"center"}
+                    contentInset={{
+                        top: 0,
+                        left: 30,
+                        bottom: 0,
+                        right: 30,
+                    }}>
+                      {
+                        offers.map((item,index) => {
+                          return (
+                            <View style = {styles.notifCard} key = {index}>
+                                <Image style = {styles.notifImage} resizeMode='contain' source = {require('../../assets/GOT.png')} />
                             </View>
-                            </View>
-                            {/* Designing Left */}
-                    </Modal>
+                          )
+                        })
+                      }
+                    </ScrollView>
+
+                  <TouchableOpacity style = {styles.closeButton} onPress={this.toggleNotifModal}>
+                    <Image style = {styles.closeIcon}  source = {require('../../assets/up-arrow.png')} />
+                    <Text style = {styles.closeText}> Close </Text>
+                  </TouchableOpacity>
+              </View>
+            </Modal>
 
 
             <ScrollView> 
@@ -324,28 +366,125 @@ const styles = StyleSheet.create({
     textAlign : 'center'
   },
   centeredView : {
-    height : '30%',
+    height : '40%',
     width : '100%',
     borderWidth : 1,
     alignSelf : 'center',
-    justifyContent : 'center',
-    backgroundColor : '#ECECEC',
+    backgroundColor : '#D9D9D9',
     marginTop : 110,
     borderBottomLeftRadius : 30,
     borderBottomRightRadius : 30
-},
-modalView : {
-    alignSelf : 'center'
-},
-button: {
-  borderRadius: 20,
-  padding: 10,
-  elevation: 2
-},
-buttonOpen: {
-  backgroundColor: "#F194FF",
-},
-buttonClose: {
-  backgroundColor: "#2196F3",
-},
+    },
+    centeredViewNotif : {
+      height : '25%',
+      width : '100%',
+      borderWidth : 1,
+      alignSelf : 'center',
+      backgroundColor : '#D9D9D9',
+      marginTop : 110,
+      borderBottomLeftRadius : 30,
+      borderBottomRightRadius : 30
+      },
+    totalBalanceBlock : {
+      marginTop : 20,
+      flexDirection : 'row',
+      justifyContent : 'space-around',
+      alignItems : 'center',
+      marginBottom : 30,
+    },
+    totalBalanceLeft : {
+      justifyContent : 'center',
+      flexDirection : 'row',
+      alignItems : 'center'
+    },    
+    totalBalanceHead : {
+      fontSize : 16,
+    },
+    totalBalanceAmount : {
+      fontSize : 20,
+      fontWeight : 'bold'
+    },
+    partBlock : {
+      height : '15%',
+      flexDirection : 'row',
+      justifyContent : 'space-between',
+      borderBottomWidth : 0.2,
+      borderBottomColor : '#000000',
+      marginTop : 10
+    },
+    partLeft : {
+      marginLeft : 20,
+      width : '70%'
+    },
+    partHead : {
+      fontSize : 16, 
+      fontWeight : 'bold'
+    },
+    partExp : {
+      fontSize : 12,
+    },
+    partAmount : {
+      fontSize : 18,
+      fontWeight : 'bold',
+      marginRight : 20
+    },
+    addCashButton : {
+      height : 40,
+      width : '30%',
+      backgroundColor : 'green',
+      justifyContent : 'center',
+      alignItems : 'center',
+      borderRadius : 5
+    },
+    addCash : {
+      textAlign : 'center',
+      color : 'white'
+    },  
+    closeButton : {
+      alignSelf : 'center',
+      marginTop : 20,
+      width : '100%',
+      flexDirection : 'row',
+      justifyContent : 'center', 
+    },
+    closeIcon : {
+      height : 30,
+      width : 30,
+      opacity : 0.5,
+      marginRight : 5
+    },
+    closeText : {
+      fontSize : 14,
+      fontWeight : 'bold',
+      marginTop : 5
+    },
+    notifScroll : {
+
+    },
+    notifHeadingBlock : {
+      flexDirection : 'row',
+      justifyContent : 'space-between',
+      marginTop : 20,
+      marginBottom : 20
+    },
+    notifHeading : {
+      marginLeft : 10,
+      fontSize : 16,
+      fontWeight : 'bold'
+    },
+    notifViewall : {
+      marginRight : 10,
+      fontSize : 14,
+      fontWeight : 'bold'
+    },
+    notifCard : {
+
+      marginLeft : 10,
+      height : 90
+    },
+    notifImage : {
+        width: width*0.9,
+        height: 90,
+        borderRadius: 10,
+    }
 });

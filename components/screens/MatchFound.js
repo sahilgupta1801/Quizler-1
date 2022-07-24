@@ -41,7 +41,7 @@ function MatchFound(props) {
                 </View>
             </View>
             <Text style = {styles.beginningIn}> Beginning in {time} </Text>
-            <Text style = {styles.allTheBest}> All the Best !</Text>
+            <Text style = {styles.allTheBest}> Note : Question 7 has double the points! </Text>
         </View>
     );
 }

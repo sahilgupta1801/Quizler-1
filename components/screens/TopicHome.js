@@ -1,59 +1,21 @@
 import React, {useState} from 'react';
 
 import {View,Text, StyleSheet, Image, Modal, TouchableOpacity} from 'react-native'; 
-
 import ContestCard from '../reusableComponents/ContestCard';
 import Header from '../reusableComponents/Header';
-
-import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-fontawesome';
-
+import { contests } from '../../data/allDataVariables';
+import {withNavigation} from 'react-navigation';
 
 function TopicHome({navigation}) {
+
+    const goToAddCash = () => {
+        //navigation.navigate('AddCash')
+    }
 
     const [modalVisible, setModalVisible] = useState(false);
 
     var back = '<';
     const heading  = navigation.state.params.heading;
-    
-    var contests = [{
-        entry : '0',
-        winning : '0',
-        bonus : '0',
-        players : '2',
-        contestName : "Practice Contest",
-        currentOnline : '2500'
-    },{
-        entry : '5',
-        winning : '9',
-        bonus : '5%',
-        players : '2',
-        contestName : "Beginner's Pot",
-        currentOnline : '1500'
-    },
-    {
-        entry : '25',
-        winning : '40',
-        bonus : '10%',
-        players : '2',
-        contestName : "Intermediate Table",
-        currentOnline : '1100'
-    },
-    {
-        entry : '49',
-        winning : '85',
-        bonus : '10%',
-        players : '2',
-        contestName : "Hot Contest",
-        currentOnline : '600'
-    },
-    {
-        entry : '99',
-        winning : '170',
-        bonus : '15%',
-        players : '2',
-        contestName : "High Value Table",
-        currentOnline : '400'
-    }]
 
     return (
         <View style={styles.container}>
@@ -67,19 +29,10 @@ function TopicHome({navigation}) {
                     setModalVisible(!modalVisible);
                     }}
                 >
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <Text style={styles.modalText}>Hello World!</Text>
-                            <TouchableOpacity
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(false)}
-                            >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                            </TouchableOpacity>
-                        </View>
+                    <View style = {styles.centeredView}>
+                    
                     </View>
-                    {/* How to play ka model likhna hai yaha  */}
-                </Modal>
+                    </Modal>
         
             <View style = {styles.belowHeaderBox}>
                 <Text style = {styles.contests}> Contests </Text>
@@ -87,8 +40,7 @@ function TopicHome({navigation}) {
                     <Text style = {styles.howToPlay}> How to Play?  </Text>
                     <Image style = {styles.infoIcon} source = {require('../../assets/info-icon.png')} />
                 </TouchableOpacity>
-            </View>
-            
+            </View>           
             {
             contests.map((item, index) => {
                     return (
@@ -99,11 +51,8 @@ function TopicHome({navigation}) {
                         />
                     )
                 })
-            }          
-            
+            }            
         </View>
-
-
     );
 }
 

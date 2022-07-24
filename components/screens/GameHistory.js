@@ -1,18 +1,9 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 import Header from '../reusableComponents/Header';
+import {gameApi} from '../../data/allDataVariables';
 
 function GameHistory(props) {
-
-    var gameApi = [{id : 'ABX', date : '08-07-2022' , topic : 'F1' , amountWon : ''} , 
-                   {id : 'ABG', date : '08-07-2022' , topic : 'Harry Potter' , amountWon : 'Rs 25'},
-                   {id : 'ABV', date : '08-07-2022' , topic : 'Chelsea' , amountWon : 'Rs 490'},
-                   {id : 'ABW', date : '07-07-2022' , topic : 'F1' , amountWon : ''} , 
-                   {id : 'ABQ', date : '07-07-2022' , topic : 'Harry Potter' , amountWon : 'Rs 25'},
-                   {id : 'ABE', date : '06-07-2022' , topic : 'F.R.I.E.N.D.S' , amountWon : 'Rs 25'} , 
-                   {id : 'ABS', date : '06-07-2022' , topic : 'Game of Thrones' , amountWon : ''},
-                   {id : 'ABA', date : '06-07-2022' , topic : 'Chelsea' , amountWon : 'Rs 490'}
-                   ];
 
     return (
         <View style = {styles.container}>
@@ -40,10 +31,7 @@ function GameHistory(props) {
                                             : 
                                             <View>
                                             </View>
-
-                                        }
-                                        
-                                        
+                                        }      
                                 </View>     
                             </TouchableOpacity>
                         )            

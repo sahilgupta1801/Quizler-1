@@ -20,9 +20,6 @@ const RootDrawerNavigator = createDrawerNavigator({
     Wallet : {
         screen : walletStack
     },
-    'Verify KYC' : {
-        screen : VerifyKYC
-    },
     'How to Play' : {
         screen : HowToPlay
     },

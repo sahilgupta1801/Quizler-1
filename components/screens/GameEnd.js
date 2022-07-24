@@ -1,13 +1,9 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import HorizontalCarousal from '../reusableComponents/HorizontalCarousal';
+import {trendingCards} from '../../data/allDataVariables';
 
 function GameEnd(props) {
-
-    var trendingCards = [{color : 'pink', text : 'F1'},{color : '#Add8E6', text : 'Chelsea'},
-        {color : 'pink', text : 'IPL'},{color : 'pink', text : 'F.R.I.E.N.D.S'},
-        {color : '#Add8e6', text : 'Game of Thrones'}];
-
 
     var back = '<';
     return (

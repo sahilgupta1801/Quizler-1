@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, StyleSheet, StatusBar, Text, Image, TouchableOpacity} from 'react-native';
 import  Header  from '../reusableComponents/Header';
+import {userData} from '../../data/allDataVariables';
 
 function Wallet(props) {
-
 
     const goToTransactions = () => 
     {
@@ -29,7 +29,7 @@ function Wallet(props) {
             <Header navigation = {props.navigation} title = {'My Wallet'} hamburger = {1} />
 
             <Text style = {styles.totalBalanceText}> Total Balance : </Text>
-            <Text style = {styles.totalBalanceAmount}> Rs. 185 </Text>
+            <Text style = {styles.totalBalanceAmount}> Rs. {userData.depositBalance + userData.winningsBalance + userData.bonusBalance} </Text>
 
             <View style = {styles.twoButtons}>
                 <TouchableOpacity style ={styles.addCashButton} onPress={() => goToAddCash()}>
@@ -43,7 +43,7 @@ function Wallet(props) {
             <View style ={styles.boxView}>
                 <View style = {styles.boxLeft}>
                     <Text style = {styles.boxText}> Deposit Wallet </Text>
-                    <Text style = {styles.boxAmount}> Rs. 150 </Text>
+                    <Text style = {styles.boxAmount}> Rs. {userData.depositBalance} </Text>
                 </View>
                 <TouchableOpacity onPress = {() => openDepositsToolTip()} >
                     <Image style = {styles.infoIcon} source = {require('../../assets/info-icon.png')} />
@@ -54,7 +54,7 @@ function Wallet(props) {
             <View style ={styles.boxView}>
                 <View style = {styles.boxLeft}>
                     <Text style = {styles.boxText}> Winnings! </Text>
-                    <Text style = {styles.boxAmount}> Rs. 30 </Text>
+                    <Text style = {styles.boxAmount}> Rs. {userData.winningsBalance} </Text>
                 </View>
                 <TouchableOpacity style = {styles.withdrawButton} onPress={() => goToWithdrawCash()}>
                     <Text style = {styles.withdrawMoney}> Withdraw </Text>
@@ -64,7 +64,7 @@ function Wallet(props) {
             <View style ={styles.boxView}>
                 <View style = {styles.boxLeft}>
                     <Text style = {styles.boxText}> Bonus Wallet </Text>
-                    <Text style = {styles.boxAmount}> Rs. 5 </Text>
+                    <Text style = {styles.boxAmount}> Rs. {userData.bonusBalance} </Text>
                 </View>
                 <Image style = {styles.infoIcon} source = {require('../../assets/info-icon.png')} />
             </View>

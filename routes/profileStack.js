@@ -3,6 +3,7 @@ import GameHistory from "../components/screens/GameHistory";
 
 import Profile from "../components/screens/Profile";
 import TransactionHistory from "../components/screens/TransactionHistory";
+import VerifyKYC from "../components/screens/VerifyKYC";
 
 const screens = {
     Profile : {
@@ -29,12 +30,12 @@ const screens = {
     //         headerShown : false,
     //     }
     // },
-    // KYCVerify : {
-    //     screen : VerifyKYC,
-    //     navigationOptions : {
-    //         headerShown : false,
-    //     }
-    // },
+    KYCVerify : {
+        screen : VerifyKYC,
+        navigationOptions : {
+            headerShown : false,
+        }
+    },
 }
 
 const profileStack = createStackNavigator(screens);

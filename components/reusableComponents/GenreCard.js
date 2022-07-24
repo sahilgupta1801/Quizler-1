@@ -8,7 +8,7 @@ const { width } = Dimensions.get('window');
 function GenreCard(props) {
 
     const handleGenrePress = () => {
-        props.navigation.navigate('VerticalGenreDisplay', {heading : props.text})
+        props.navigation.navigate('VerticalTopicDisplay', {heading : props.text , genre : 1, type : 4})
     }
     return (
         <TouchableOpacity style = {styles.view} onPress={() => handleGenrePress()}>

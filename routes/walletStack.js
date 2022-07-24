@@ -1,6 +1,7 @@
 import { createStackNavigator, HeaderTitle } from "react-navigation-stack";
 import TransactionHistory from "../components/screens/TransactionHistory";
 import Wallet from "../components/screens/Wallet";
+import VerifyKYC from "../components/screens/VerifyKYC";
 
 const screens = {
     Wallet : {
@@ -33,12 +34,12 @@ const screens = {
     //         headerShown : false,
     //     }
     // },
-    // KYCVerify : {
-    //     screen : VerifyKYC,
-    //     navigationOptions : {
-    //         headerShown : false,
-    //     }
-    // },
+    KYCVerify : {
+        screen : VerifyKYC,
+        navigationOptions : {
+            headerShown : false,
+        }
+    },
 }
 
 const walletStack = createStackNavigator(screens);

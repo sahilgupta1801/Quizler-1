@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, StyleSheet, StatusBar, Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
-import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-fontawesome';
+import { userData } from '../../data/allDataVariables';
 import  Header  from '../reusableComponents/Header';
+import { avatars } from '../../data/constants';
 
 function Profile(props) {
 
@@ -12,33 +13,36 @@ function Profile(props) {
     const goTransactionHistory = () => {
         props.navigation.navigate('TransactionHistory')
     }
-    var kyc = 0;
-    var forward = '>'
 
+    const goToVerifyKYC = () => {
+        props.navigation.navigate('KYCVerify')
+    }
+    var forward = '>'
+    var avatarSel = userData.avatarSel
     return (
         <View style = {styles.container}>
             <StatusBar hidden = {true} />
             <Header navigation = {props.navigation} title = {'My Profile'} hamburger = {1}  wallet={0}/>
 
             <View style = {styles.profileSection}>
-                <Image style = {styles.profileAvatar} source = {require('../../assets/avatar1.png')}/>
+                <Image style = {styles.profileAvatar} source = {avatars[avatarSel]}/>
                 <View style = {styles.profileRight}>
-                    <Text style = {styles.userName}> Sahil Gupta </Text>
-                    <Text style = {styles.userNumber}> 911****568 </Text>
-                    <Text style = {styles.userEmail}> sahilgupta0118@gmail.com </Text>
-                    <Text style = {styles.userDOB}> 18/01/2000 </Text>
+                    <Text style = {styles.userName}> {userData.name} </Text>
+                    <Text style = {styles.userNumber}> {userData.number} </Text>
+                    <Text style = {styles.userEmail}> {userData.email} </Text>
+                    <Text style = {styles.userDOB}> {userData.dob} </Text>
                 </View>
             </View> 
             
-            <TouchableOpacity style = {styles.kycBox}>
+            <TouchableOpacity style = {styles.kycBox} onPress={() => goToVerifyKYC()}>
                 <Text style = {styles.kycText}>
-                    KYC Status : Not Verified
+                    KYC Status : {userData.kyc}
                 </Text>
                 {/* Needs a right arrow to take user to KYC page */}
             </TouchableOpacity>
 
             <View style = {styles.skillBox}>
-                <Text style = {styles.kycText}> Skill Rating : 1050 </Text>
+                <Text style = {styles.kycText}> Skill Rating : {userData.skillScore} </Text>
                 {/* Needs an info icon */}
             </View>
 
@@ -56,7 +60,6 @@ function Profile(props) {
                 <Text style = {styles.wideText}> Analytics </Text>
                 <Text style = {styles.forwardArrow}> {forward} </Text>
             </TouchableOpacity>
-
         </View>
     );
 }
