@@ -19,7 +19,7 @@ function Header(props) {
         //props.navigation.navigate('AddCash')
     }
     return (
-        <View style = {styles.header} backgroundColor = {props.color}>
+        <View style = {styles.header} backgroundColor = {props.headerColor}>
             {
                 props.hamburger ? 
                 <TouchableOpacity onPress={openMenu}> 
