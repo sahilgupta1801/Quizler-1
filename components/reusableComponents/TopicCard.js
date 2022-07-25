@@ -8,7 +8,7 @@ const { width } = Dimensions.get('window');
 function TopicCard(props) {
 
     const handleTopicPress = () => {
-        props.navigation.navigate('TopicScreen', {heading : props.text})
+        props.navigation.navigate('TopicScreen', {heading : props.text , color : props.color})
     }
     return (
         <TouchableOpacity style = {styles.view} onPress={() => handleTopicPress()}>

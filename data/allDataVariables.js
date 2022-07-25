@@ -39,11 +39,11 @@ export const allTopics = [
 ];
 
 export const genreCards = {
-    'TV Shows' : [{text : 'Game of Thrones'} , {text : 'F.R.I.E.N.D.S'}],
-    'Sports' : [{text : 'Chelsea'} , {text : 'Manchester United'} , {text : 'LA Lakers'} , {text : 'Liverpool'} , {text : 'Champions League'} , {text : 'IPL 2022'} , {text : 'F1'}],
-    'Movies' : [{text : 'Bollywood'} , {text : 'Harry Potter'}],
-    'History' : [{text : 'Indian History'}], 
-    'Geography' : [{text : 'Geography'}],
+    'TV Shows' : [{text : 'Game of Thrones', color : 'pink'} , {text : 'F.R.I.E.N.D.S' , color : 'pink'}],
+    'Sports' : [{text : 'Chelsea' , color : 'pink'} , {text : 'Manchester United' , color : 'pink'} , {text : 'LA Lakers', color : 'pink'} , {text : 'Liverpool' , color : 'red'} , {text : 'Champions League' , color : 'blue'} , {text : 'IPL 2022' , color : 'blue'} , {text : 'F1' , color : 'red'}],
+    'Movies' : [{text : 'Bollywood' , color : 'pink'} , {text : 'Harry Potter' , color : 'blue'}],
+    'History' : [{text : 'Indian History' , color : 'red'}], 
+    'Geography' : [{text : 'Geography' , color : 'red'}],
 };
 
 export const contests = [

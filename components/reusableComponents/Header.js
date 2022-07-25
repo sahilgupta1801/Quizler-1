@@ -3,25 +3,25 @@ import {View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, Modal} from
 
 const { width } = Dimensions.get('window');
 
-function Header({navigation, title, hamburger, wallet}) {
+function Header(props) {
 
     const [modalVisible, setModalVisible] = useState(false);
 
     const openMenu = () => {
-        navigation.openDrawer();
+        props.navigation.openDrawer();
     }
 
     const prev = () => {
-        navigation.goBack();
+        props.navigation.goBack();
     }
 
     const goToAddCash = () => {
-        //navigation.navigate('AddCash')
+        //props.navigation.navigate('AddCash')
     }
     return (
-        <View style = {styles.header}>
+        <View style = {styles.header} backgroundColor = {props.color}>
             {
-                hamburger ? 
+                props.hamburger ? 
                 <TouchableOpacity onPress={openMenu}> 
                     <Image  source = {require('../../assets/hamburger.png')} style = {styles.hamburger} />          
                 </TouchableOpacity>
@@ -31,9 +31,9 @@ function Header({navigation, title, hamburger, wallet}) {
                 </TouchableOpacity>
             }
             
-            <Text style = {styles.heading}> {title} </Text>
+            <Text style = {styles.heading}> {props.title} </Text>
             {
-                wallet ?
+                props.wallet ?
                 <TouchableOpacity onPress={() => setModalVisible(true)}> 
                     <Image  source = {require('../../assets/wallet.png')} style = {styles.wallet} />          
                 </TouchableOpacity>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         justifyContent : 'space-between' ,
         alignItems : 'center',
         height : 100,
-        backgroundColor : '#CEA3FF',
+        //backgroundColor : '#CEA3FF',
         opacity : 1,
         borderBottomWidth : 1,
         width : width,

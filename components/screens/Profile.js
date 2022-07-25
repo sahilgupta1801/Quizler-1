@@ -38,12 +38,12 @@ function Profile(props) {
                 <Text style = {styles.kycText}>
                     KYC Status : {userData.kyc}
                 </Text>
-                {/* Needs a right arrow to take user to KYC page */}
+                <Text style = {styles.forwardArrow}> {forward} </Text>
             </TouchableOpacity>
 
             <View style = {styles.skillBox}>
                 <Text style = {styles.kycText}> Skill Rating : {userData.skillScore} </Text>
-                {/* Needs an info icon */}
+                <Image style = {styles.infoIcon} source = {require('../../assets/info-icon.png')} />
             </View>
 
             <TouchableOpacity style = {styles.wideBox} onPress={() => goTransactionHistory()}>
@@ -102,10 +102,12 @@ const styles = StyleSheet.create({
         height : 60,
         width : '70%',
         marginTop : 50,
-        justifyContent : 'center',
+        alignItems : 'center',
         borderRadius : 10,
         borderWidth : 1,
-        borderColor : '#000000'
+        borderColor : '#000000',
+        flexDirection : 'row',
+        justifyContent : 'space-between'
     },
     kycText : {
         marginLeft : 10,
@@ -116,10 +118,12 @@ const styles = StyleSheet.create({
         height : 60,
         width : '70%',
         marginTop : 20,
-        justifyContent : 'center',
+        alignItems : 'center',
         borderRadius : 10,
         borderWidth : 1,
-        borderColor : '#000000'
+        borderColor : '#000000',
+        flexDirection : 'row',
+        justifyContent : 'space-between'
     },
     wideBox : {
         alignSelf : 'center',
@@ -154,6 +158,11 @@ const styles = StyleSheet.create({
         marginRight : 20,
         fontSize : 30
     },
+    infoIcon : {
+        height : 20,
+        width : 20,
+        marginRight : 25
+    }
 })
 
 export default Profile;

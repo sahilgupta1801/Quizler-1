@@ -9,8 +9,6 @@ function VerticalTopicDisplay(props) {
 
     var heading = props.navigation.state.params.heading
     var type = props.navigation.state.params.type;
-    console.log(heading)
-    console.log(genreCards[heading])
     var cards = (type == 1 ? trendingCards : type == 2 ? youmightLikeCards : type == 3 ? genres : genreCards[heading] )
     var onClickScreen = props.navigation.state.params.genres ? 'VerticalTopicDisplay' : 'TopicScreen'
     
@@ -21,7 +19,7 @@ function VerticalTopicDisplay(props) {
             {
                 cards.map((item,index) => {
                     return (
-                        <WideTopic height = {100} key = {index} margin = {10} onClick = {onClickScreen} text = {item.text} />
+                        <WideTopic height = {100} key = {index} margin = {10} onClick = {onClickScreen} text = {item.text} type = {type} color = {item.color} />
                     )
                 })
             }

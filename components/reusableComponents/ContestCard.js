@@ -9,7 +9,7 @@ function ContestCard(props) {
         props.navigation.navigate('Matchmaking')
     }
     return (
-        <View style={styles.contestCard}>
+        <View style={styles.contestCard} backgroundColor = {props.color}>
             <View style = {styles.contestLeft}>
             <Text style= {styles.contestName}>
                 {props.contestName}
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         height : 80,
         alignSelf : 'center',
         alignContent : 'center',
-        backgroundColor : '#A865C9',
+        //backgroundColor : '#A865C9',
         flexDirection : 'row',
         justifyContent : 'space-between',
         borderRadius : 10

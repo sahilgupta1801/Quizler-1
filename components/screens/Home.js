@@ -215,7 +215,7 @@ goToAddCash() {
               {
                   allTopics.map((item, index) => {
                       return (
-                          <WideTopic key={index} height ={50} text = {item.text} color = {item.color}/>
+                          <WideTopic key={index} height ={50} text = {item.text} color = {item.color} margin = {10} onClick = {'TopicScreen'} type = {5} />
                       )
                   })
               }

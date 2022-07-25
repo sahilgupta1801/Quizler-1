@@ -16,10 +16,11 @@ function TopicHome({navigation}) {
 
     var back = '<';
     const heading  = navigation.state.params.heading;
+    const color = navigation.state.params.color;
 
     return (
         <View style={styles.container}>
-            <Header navigation={navigation} title = {heading} hamburger={0} wallet={1}/>
+            <Header navigation={navigation} title = {heading} hamburger={0} wallet={1} headerColor ={color}/>
 
                 <Modal
                     animationType="slide"
@@ -47,7 +48,7 @@ function TopicHome({navigation}) {
                         <ContestCard 
                         key={index} entry={item.entry} winning= {item.winning}
                         bonus={item.bonus} players={item.players} contestName={item.contestName}
-                        currentOnline={item.currentOnline}
+                        currentOnline={item.currentOnline} color = {color}
                         />
                     )
                 })
