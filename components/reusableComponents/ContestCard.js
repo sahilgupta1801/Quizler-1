@@ -6,7 +6,7 @@ import {withNavigation} from 'react-navigation';
 function ContestCard(props) {
 
     const handlePlayNow = () => {
-        props.navigation.navigate('Matchmaking')
+        props.navigation.navigate('Matchmaking' , {prizePool : props.winning})
     }
     return (
         <View style={styles.contestCard} backgroundColor = {props.color}>

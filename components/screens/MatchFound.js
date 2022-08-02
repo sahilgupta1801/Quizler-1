@@ -1,5 +1,7 @@
 import React,{useState} from 'react';
 import {View,Text,Image,Dimensions, TouchableOpacity, StyleSheet} from 'react-native';
+import { userData, opponentData } from '../../data/allDataVariables';
+import { avatars } from '../../data/constants';
 
 const { width } = Dimensions.get('window');
 
@@ -22,6 +24,9 @@ function MatchFound(props) {
         };
       }, []);
 
+
+    //Get topic and prize pool from nav parameters 
+
     return (
         <View style={styles.container}>
             <Text style = {styles.topicHeader}> F1</Text>
@@ -29,15 +34,15 @@ function MatchFound(props) {
             <Text style = {styles.matchFound}> Match Found!</Text>
             <View style = {styles.avatars}>
                 <View style = {styles.currentUser}>
-                    <Image style = {styles.currentUserAvatar} source={require('../../assets/avatar1.png')}/>
-                    <Text style = {styles.currentUserName}> Sahil Gupta</Text>
-                    <Text style = {styles.currentUserLocation}> India </Text>
+                    <Image style = {styles.currentUserAvatar} source={avatars[userData.avatarSel]}/>
+                    <Text style = {styles.currentUserName}> {userData.name}</Text>
+                    <Text style = {styles.currentUserLocation}> {userData.location} </Text>
                 </View>
                 <Text style = {styles.versus}> vs </Text>
                 <View style = {styles.opponent}>
-                    <Image style = {styles.opponentAvatar} source={require('../../assets/avatar7.png')} />
-                    <Text style = {styles.opponentName}> Ammar Khurshid </Text>
-                    <Text style = {styles.opponentLocation}> Pakistan </Text>
+                    <Image style = {styles.opponentAvatar} source={avatars[opponentData.avatarSel]} />
+                    <Text style = {styles.opponentName}> {opponentData.name} </Text>
+                    <Text style = {styles.opponentLocation}> {opponentData.location} </Text>
                 </View>
             </View>
             <Text style = {styles.beginningIn}> Beginning in {time} </Text>

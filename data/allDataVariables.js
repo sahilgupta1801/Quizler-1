@@ -4,6 +4,7 @@ export const userData = {
     email : 'sahilgupta0118@gmail.com',
     dob : '18-01-2000',
     avatarSel : 1,
+    location : 'India',
     depositBalance : 120,
     winningsBalance : 50,
     bonusBalance : 21,
@@ -11,16 +12,35 @@ export const userData = {
     skillScore : 1050
 };
 
+//Got from Matchmaking API
+export const opponentData = {
+    name : 'Ammar Khurshid',
+    number : '9395912345',
+    avatarSel : 3,
+    location : 'India'
+}
+
+//Get after Matchmaking
+export const questionsData = [
+    {question : 'Q1 : Where is the home of Mercedes?' , opt1 : 'England' , opt2 : 'Italy', opt3 : 'Belgium' , opt4 : 'Germany', correct : 'Germany'},
+    {question : 'Q2 : Where is the home of Ferrari?' , opt1 : 'England' , opt2 : 'Italy', opt3 : 'Belgium' , opt4 : 'Germany', correct : 'Italy'},
+    {question : 'Q3 : Where is the home of ?' , opt1 : 'England' , opt2 : 'Italy', opt3 : 'Belgium' , opt4 : 'Germany', correct : 'Belgium'},
+    {question : 'Q4 : Where is the home of Mercedes?' , opt1 : 'England' , opt2 : 'Italy', opt3 : 'Belgium' , opt4 : 'Germany', correct : 'Belgium'},
+    {question : 'Q5 : Where is the home of Mercedes?' , opt1 : 'England' , opt2 : 'Italy', opt3 : 'Belgium' , opt4 : 'Germany', correct : 'Belgium'},
+    {question : 'Q6 : Where is the home of Mercedes?' , opt1 : 'England' , opt2 : 'Italy', opt3 : 'Belgium' , opt4 : 'Germany', correct : 'Belgium'},
+    {question : 'Q7 : Who won the 2022 Baku Grand Prix?' , opt1 : 'Max Verstappen' , opt2 : 'Charles LeClerc', opt3 : 'Carlos Sainz' , opt4 : 'Lewis Hamilton' , correct : 'Max Verstappen'}
+]
+
 export const trendingCards = [
-    {color : 'pink', text : 'F1'},{color : '#Add8E6', text : 'Chelsea'},
-    {color : 'pink', text : 'IPL'},{color : 'pink', text : 'F.R.I.E.N.D.S'},
-    {color : '#Add8e6', text : 'Game of Thrones'}
+    {color : '#FF1801', text : 'F1'},{color : '#034694', text : 'Chelsea'},
+    {color : '#00237D', text : 'IPL'},{color : '#9C8CD4', text : 'F.R.I.E.N.D.S'},
+    {color : '#B9540C', text : 'Game of Thrones'}
 ];
 
 export const youmightLikeCards = [
-    {color : '#Add8e6', text : 'F.R.I.E.N.D.S'},{color : 'pink', text : 'Game of Thrones'},
-    {color : '#Add8e6', text : 'F1'},{color : 'pink', text : 'Chelsea'},
-    {color : '#Add8e6', text : 'IPL'}
+    {color : '#9C8CD4', text : 'F.R.I.E.N.D.S'},{color : '#B9540C', text : 'Game of Thrones'},
+    {color : '#FF1801', text : 'F1'},{color : '#034694', text : 'Chelsea'},
+    {color : '#00237D', text : 'IPL'}
 ];
 
 export const genres = [
@@ -30,18 +50,18 @@ export const genres = [
 ];
 
 export const allTopics = [
-    {color : '#Add8e6', text : 'Chelsea'}, {color : 'yellow', text : 'Game of Thrones'},
-    {color : 'pink', text : 'F.R.I.E.N.D.S'}, {color : '#Add8e6', text : 'IPL 2022'},
-    {color : 'yellow', text : 'L.A Lakers'} , {color : 'pink', text : 'F1'},
-    {color : '#Add8e6', text : 'Manchester United'}, {color : 'yellow', text : 'Liverpool'},
-    {color : 'pink', text : 'Harry Potter'}, {color : '#Add8e6', text : 'Premier League'},
-    {color : 'pink', text : 'Bollywood'}, {color : 'yellow', text : 'Champions League'}
+    {color : '#034694', text : 'Chelsea'}, {color : '#B9540C', text : 'Game of Thrones'},
+    {color : '#9C8CD4', text : 'F.R.I.E.N.D.S'}, {color : '#00237D', text : 'IPL 2022'},
+    {color : 'yellow', text : 'L.A Lakers'} , {color : '#FF1801', text : 'F1'},
+    {color : '#DA020E', text : 'Manchester United'}, {color : '#D00027', text : 'Liverpool'},
+    {color : '#740001', text : 'Harry Potter'}, {color : '#3D195B', text : 'Premier League'},
+    {color : '#FFFBAB', text : 'Bollywood'}, {color : '#00088E', text : 'Champions League'}
 ];
 
 export const genreCards = {
-    'TV Shows' : [{text : 'Game of Thrones', color : 'pink'} , {text : 'F.R.I.E.N.D.S' , color : 'pink'}],
-    'Sports' : [{text : 'Chelsea' , color : 'pink'} , {text : 'Manchester United' , color : 'pink'} , {text : 'LA Lakers', color : 'pink'} , {text : 'Liverpool' , color : 'red'} , {text : 'Champions League' , color : 'blue'} , {text : 'IPL 2022' , color : 'blue'} , {text : 'F1' , color : 'red'}],
-    'Movies' : [{text : 'Bollywood' , color : 'pink'} , {text : 'Harry Potter' , color : 'blue'}],
+    'TV Shows' : [{text : 'Game of Thrones', color : '#B9540C'} , {text : 'F.R.I.E.N.D.S' , color : '#9C8CD4'}],
+    'Sports' : [{text : 'Chelsea' , color : '#034694'} , {text : 'Manchester United' , color : '#DA020E'} , {text : 'LA Lakers', color : 'pink'} , {text : 'Liverpool' , color : '#D00027'} , {text : 'Champions League' , color : '#00088E'} , {text : 'IPL 2022' , color : '#00237D'} , {text : 'F1' , color : '#FF1801'}],
+    'Movies' : [{text : 'Bollywood' , color : '#FFFBAB'} , {text : 'Harry Potter' , color : '#740001'}],
     'History' : [{text : 'Indian History' , color : 'red'}], 
     'Geography' : [{text : 'Geography' , color : 'red'}],
 };

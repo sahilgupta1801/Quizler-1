@@ -22,7 +22,7 @@ function Profile(props) {
     return (
         <View style = {styles.container}>
             <StatusBar hidden = {true} />
-            <Header navigation = {props.navigation} title = {'My Profile'} hamburger = {1}  wallet={0}/>
+            <Header navigation = {props.navigation} title = {'My Profile'} hamburger = {1}  wallet={0} headerColor = {'#A865C9'}/>
 
             <View style = {styles.profileSection}>
                 <Image style = {styles.profileAvatar} source = {avatars[avatarSel]}/>

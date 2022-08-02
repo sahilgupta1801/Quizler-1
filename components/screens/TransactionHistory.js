@@ -8,7 +8,7 @@ function TransactionHistory(props) {
 
     return (
         <View style = {styles.container}>
-            <Header navigation={props.navigation} title = {'Transaction History'} hamburger = {0} wallet={0} />
+            <Header navigation={props.navigation} title = {'Transaction History'} hamburger = {0} wallet={0} headerColor = {'#A865C9'} />
             <ScrollView style = {styles.scroll}>
                 {     
                     transactionApi.map((transaction, index) => { 

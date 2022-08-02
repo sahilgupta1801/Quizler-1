@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
       fontWeight : 'bold',
       alignSelf :'center',
       paddingLeft : width*0.1,
-    //   fontFamily : 'sans-serrif'
+    //fontFamily : 'sans-serrif'
   },
   trendingnow : {
     fontWeight : 'bold',
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
   trendingLine : {
     flexDirection : 'row',
     justifyContent : 'space-between',
-    marginTop : 0
+    marginTop : 0,
   },
   mightLikeLine : {
     flexDirection : 'row',
@@ -478,13 +478,12 @@ const styles = StyleSheet.create({
       fontWeight : 'bold'
     },
     notifCard : {
-
       marginLeft : 10,
-      height : 90
+      height : 100
     },
     notifImage : {
         width: width*0.9,
-        height: 90,
+        height: 100,
         borderRadius: 10,
     }
 });

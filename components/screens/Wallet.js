@@ -26,7 +26,7 @@ function Wallet(props) {
     return (
         <View style = {styles.container}>
             <StatusBar hidden = {true} />
-            <Header navigation = {props.navigation} title = {'My Wallet'} hamburger = {1} />
+            <Header navigation = {props.navigation} title = {'My Wallet'} hamburger = {1} headerColor = {'#A865C9'}/>
 
             <Text style = {styles.totalBalanceText}> Total Balance : </Text>
             <Text style = {styles.totalBalanceAmount}> Rs. {userData.depositBalance + userData.winningsBalance + userData.bonusBalance} </Text>

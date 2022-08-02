@@ -5,6 +5,7 @@ import TopicHome from "../components/screens/TopicHome";
 import VerticalTopicDisplay from "../components/screens/VerticalTopicDisplay";
 import Matchmaking from '../components/screens/Matchmaking';
 import Header from "../components/reusableComponents/Header";
+import MatchFound from "../components/screens/MatchFound";
 
 const screens = {
     Home: {
@@ -31,6 +32,12 @@ const screens = {
             headerShown : false,
         },
     },
+    MatchFound : {
+        screen : MatchFound,
+        navigationOptions : {
+            headerShown : false,
+        },
+    }
     // AddCash : {
     //     screen : AddCash,
     //     navigationOptions : {

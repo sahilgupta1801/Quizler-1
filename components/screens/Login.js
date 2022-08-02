@@ -4,19 +4,19 @@ import { TouchableOpacity } from 'react-native';
 
 function Login(props) {
     return (
-        <View style={styles.container}>
-      <Text style = {styles.bannerText}> Quizler </Text>
-      <Text style = {styles.signUp}> Sign Up / Login </Text>
-      <Text style = {styles.enterNumber}> Enter your mobile number to get started </Text>
-      <TextInput style = {styles.inputNumber} placeholder='Enter your number'></TextInput>
-      <TouchableOpacity style = {styles.getStarted} onPress={()=> handleGetStarted()}>
-        <Text style={styles.getStartedtext}> Get Started! </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style = {styles.truecaller} onPress={()=> handleTruecaller()}>
-        <Image source={require('../../assets/sign-in.png')} style = {styles.signinImage}/>
-        <Text style={styles.truecallertext}> Sign In With True caller </Text>
-      </TouchableOpacity>
-    </View>
+      <View style={styles.container}>
+          <Text style = {styles.bannerText}> Quizler </Text>
+          <Text style = {styles.signUp}> Sign Up / Login </Text>
+          <Text style = {styles.enterNumber}> Enter your mobile number to get started </Text>
+          <TextInput style = {styles.inputNumber} placeholder='Enter your number'></TextInput>
+          <TouchableOpacity style = {styles.getStarted} onPress={()=> handleGetStarted()}>
+            <Text style={styles.getStartedtext}> Get Started! </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style = {styles.truecaller} onPress={()=> handleTruecaller()}>
+            <Image source={require('../../assets/sign-in.png')} style = {styles.signinImage}/>
+            <Text style={styles.truecallertext}> Sign In With True caller </Text>
+          </TouchableOpacity>
+      </View>
     );
 }
 

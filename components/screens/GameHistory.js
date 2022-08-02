@@ -7,7 +7,7 @@ function GameHistory(props) {
 
     return (
         <View style = {styles.container}>
-            <Header navigation={props.navigation} title = {'Game History'} hamburger = {0} wallet={0} />
+            <Header navigation={props.navigation} title = {'Game History'} hamburger = {0} wallet={0} headerColor = {'#A865C9'} />
             <ScrollView style = {styles.scroll}>
                 {     
                     gameApi.map((game, index) => { 

@@ -1,6 +1,7 @@
-import React,{Component} from 'react';
+import React,{Component, useState} from 'react';
 import {View , Dimensions , Text, Image, TouchableOpacity, ScrollView, StyleSheet} from 'react-native';
-
+import { userData } from '../../data/allDataVariables';
+import { avatars } from '../../data/constants';
 const { width } = Dimensions.get('window');
 
 export default class Matchmaking extends Component {
@@ -15,14 +16,10 @@ export default class Matchmaking extends Component {
     render() {
         
     var backText = '< Back To Lobby'
-    var images = [{id : '../../assets/avatar1.png'},
-                  {id : '../../assets/avatar2.png'},
-                  {id : '../../assets/avatar3.png'},
-                  {id : '../../assets/avatar4.png'},
-                  {id : '../../assets/avatar5.png'},
-                  {id : '../../assets/avatar6.png'},
-                  {id : '../../assets/avatar7.png'},
-                  {id : '../../assets/avatar8.png'}]
+    var images = [{id : '1'}, {id : '2'}, {id : '3'}, {id : '4'}, {id : '5'}, {id : '6'}, {id : '7'}, {id : '8'}]
+
+    var prizePool = this.props.navigation.state.params.prizePool
+
     return (
         <View style = {styles.page}>
             <TouchableOpacity style = {styles.backToLobby} onPress={()=> this.handleBackLobby()}>
@@ -32,12 +29,12 @@ export default class Matchmaking extends Component {
             </TouchableOpacity>
 
             <View style= {styles.aboveAvatar}>
-                <Text style = {styles.prizePool}> Prize Pool : Rs 45 </Text>
-                <Text style = {styles.findingMatch}> Finding Your Opponent : </Text>
+                <Text style = {styles.prizePool}> Prize Pool : Rs {prizePool}  </Text>
+                <Text style = {styles.findingMatch}> Finding Your Opponent </Text>
             </View>
             <View style = {styles.avatarView}>
                 <Image style = {styles.avatar} source = {require('../../assets/avatar1.png')} />
-                <Text style = {styles.userName}> Sahil Gupta </Text>
+                <Text style = {styles.userName}> {userData.name} </Text>
                 <Text style = {styles.userLocation}> India </Text>
             </View>
 
@@ -59,16 +56,12 @@ export default class Matchmaking extends Component {
                 }}>
                 {
                 images.map((item,index) => {
-                    console.log(item.id)
                     return (
-                        <Image style = {styles.avImages} source = {require('../../assets/avatar7.png')} />
+                        <Image style = {styles.avImages} source = {avatars[item.id]} key = {index} />
                     )
                 })
                 }
             </ScrollView>
-
-
-
         </View>
     );
     }
